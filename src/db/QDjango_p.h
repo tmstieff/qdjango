@@ -67,7 +67,7 @@ public:
     QMap<QThread*, QSqlDatabase> copies;
     qint64 connectionId;
 
-private slots:
+private Q_SLOTS:
     void threadFinished();
 };
 

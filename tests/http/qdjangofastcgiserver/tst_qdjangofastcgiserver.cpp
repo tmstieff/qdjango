@@ -94,7 +94,7 @@ public:
     QDjangoFastCgiClient(QIODevice *socket);
     QDjangoFastCgiReply* request(const QString &method, const QUrl &url, const QByteArray &data);
 
-private slots:
+private Q_SLOTS:
     void _q_readyRead();
 
 private:
@@ -206,7 +206,7 @@ class tst_QDjangoFastCgiServer : public QObject
 {
     Q_OBJECT
 
-private slots:
+private Q_SLOTS:
     void cleanup();
     void init();
     void testAbort();
@@ -429,7 +429,7 @@ void tst_QDjangoFastCgiServer::testLocal()
 
     const QString name("/tmp/qdjangofastcgi.socket");
     QCOMPARE(server->listen(name), true);
-    
+
     QLocalSocket socket;
     socket.connectToServer(name);
 

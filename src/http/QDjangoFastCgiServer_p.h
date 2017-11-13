@@ -76,7 +76,7 @@ public:
 signals:
     void closed();
 
-private slots:
+private Q_SLOTS:
     void _q_bytesWritten(qint64 bytes);
     void _q_readyRead();
 

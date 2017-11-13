@@ -44,7 +44,7 @@ class Worker : public QObject
 {
     Q_OBJECT
 
-public slots:
+public Q_SLOTS:
     void doIt();
 
 signals:
@@ -64,7 +64,7 @@ class tst_QDjango : public QObject
 {
     Q_OBJECT
 
-private slots:
+private Q_SLOTS:
     void initTestCase();
     void init();
     void databaseThreaded();

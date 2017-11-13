@@ -25,7 +25,7 @@ class tst_Shares : public QObject
 {
     Q_OBJECT
 
-private slots:
+private Q_SLOTS:
     void initTestCase();
     void testFile();
     void cleanup();

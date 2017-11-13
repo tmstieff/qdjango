@@ -29,7 +29,7 @@ class tst_QDjangoHttpController : public QObject
 {
     Q_OBJECT
 
-private slots:
+private Q_SLOTS:
     void testBasicAuth();
     void testDateTime();
     void testServeAuthorizationRequired();

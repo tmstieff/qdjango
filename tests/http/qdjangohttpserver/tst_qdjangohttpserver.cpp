@@ -33,7 +33,7 @@ class tst_QDjangoHttpServer : public QObject
 {
     Q_OBJECT
 
-private slots:
+private Q_SLOTS:
     void cleanupTestCase();
     void initTestCase();
     void testCloseConnection();

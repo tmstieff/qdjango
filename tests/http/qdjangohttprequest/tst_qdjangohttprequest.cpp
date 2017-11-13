@@ -26,7 +26,7 @@ class tst_QDjangoHttpRequest : public QObject
 {
     Q_OBJECT
 
-private slots:
+private Q_SLOTS:
     void testBody();
     void testGet();
     void testPost();

@@ -50,7 +50,7 @@ public:
     bool listen(const QHostAddress &address, quint16 port);
     QDjangoUrlResolver *urls() const;
 
-private slots:
+private Q_SLOTS:
     void _q_newLocalConnection();
     void _q_newTcpConnection();
 

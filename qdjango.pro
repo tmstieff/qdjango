@@ -1,5 +1,7 @@
 include(qdjango.pri)
 
+CONFIG += no_keywords
+
 TEMPLATE = subdirs
 
 SUBDIRS = src

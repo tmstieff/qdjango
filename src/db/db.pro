@@ -3,6 +3,8 @@ include(../../qdjango.pri)
 QT -= gui
 QT += sql
 
+CONFIG += ordered no_keywords
+
 DEFINES += QDJANGO_DB_BUILD
 
 TARGET = qdjango-db

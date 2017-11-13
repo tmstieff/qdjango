@@ -163,7 +163,7 @@ void QDjangoFastCgiConnection::_q_bytesWritten(qint64 bytes)
         qDebug("Closing connection");
 #endif
         m_device->close();
-        emit closed();
+        Q_EMIT(closed());
     }
 }
 

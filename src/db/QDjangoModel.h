@@ -87,7 +87,7 @@ public:
     QVariant pk() const;
     void setPk(const QVariant &pk);
 
-public slots:
+public Q_SLOTS:
     bool remove();
     bool save();
     QString toString() const;

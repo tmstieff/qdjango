@@ -136,7 +136,7 @@ class tst_QDjangoCompiler : public QObject
 {
     Q_OBJECT
 
-private slots:
+private Q_SLOTS:
     void initTestCase();
     void fieldNames_data();
     void fieldNames();

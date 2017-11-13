@@ -25,7 +25,7 @@ class tst_QDjangoHttpResponse : public QObject
 {
     Q_OBJECT
 
-private slots:
+private Q_SLOTS:
     void testBody();
     void testHeader();
     void testStatusCode_data();

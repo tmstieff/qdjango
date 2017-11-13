@@ -32,7 +32,7 @@ public:
     AdminController(QObject* parent = 0);
     void setupUrls(QDjangoUrlResolver *urls);
 
-public slots:
+public Q_SLOTS:
     QDjangoHttpResponse* index(const QDjangoHttpRequest &request);
     QDjangoHttpResponse* staticFiles(const QDjangoHttpRequest &request, const QString &path);
 
@@ -56,7 +56,7 @@ public:
 
     QDjangoUrlResolver *urls() const;
 
-public slots:
+public Q_SLOTS:
     QDjangoHttpResponse* addForm(const QDjangoHttpRequest &request);
     QDjangoHttpResponse* changeForm(const QDjangoHttpRequest &request, const QString &objectId);
     QDjangoHttpResponse* changeList(const QDjangoHttpRequest &request);

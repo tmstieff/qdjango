@@ -44,7 +44,7 @@ public:
     bool set(const QRegExp &path, QObject *receiver, const char *member);
     QString reverse(QObject *receiver, const char *member, const QVariantList &args = QVariantList()) const;
 
-public slots:
+public Q_SLOTS:
     QDjangoHttpResponse* respond(const QDjangoHttpRequest &request, const QString &path) const;
 
 private:

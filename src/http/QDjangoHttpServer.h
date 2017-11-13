@@ -58,7 +58,7 @@ signals:
      */
     void requestFinished(QDjangoHttpRequest *request, QDjangoHttpResponse *response);
 
-private slots:
+private Q_SLOTS:
     void _q_newTcpConnection();
 
 private:
