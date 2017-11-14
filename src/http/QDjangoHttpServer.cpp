@@ -71,7 +71,7 @@ QDjangoHttpConnection::~QDjangoHttpConnection()
 {
     if (m_pendingRequest)
         delete m_pendingRequest;
-    foreach (const QDjangoHttpJob &job, m_pendingJobs) {
+    Q_FOREACH (const QDjangoHttpJob &job, m_pendingJobs) {
         delete job.first;
         delete job.second;
     }

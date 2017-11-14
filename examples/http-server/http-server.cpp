@@ -75,12 +75,12 @@ public:
     {
         QVariantList objectList;
         QDjangoQuerySet<T> objects;
-        foreach (const T &obj, objects) {
+        Q_FOREACH (const T &obj, objects) {
             QVariantMap dump = dumpObject(&obj);
 
             // get ordered list of properties to show
             QVariantList propList;
-            foreach (const QByteArray &key, listFields) {
+            Q_FOREACH (const QByteArray &key, listFields) {
                 propList << dump.value(key);
             }
             dump.insert("value_list", propList);
@@ -100,7 +100,7 @@ static QVariant evaluate(const QString &input, const QVariantMap &context)
 {
     const QStringList bits = input.split(".");
     QVariant value = context;
-    foreach (const QString &bit, bits) {
+    Q_FOREACH (const QString &bit, bits) {
         value = value.toMap().value(bit);
     }
     //qDebug("evaluate(%s): %s", qPrintable(input), qPrintable(value.toString()));
@@ -192,7 +192,7 @@ static QString render(const QList<Node> &nodes, const QVariantMap &context)
                 const QVariantList list = evaluate(forRx.cap(2), context).toList();
                 QVariantMap forLoop;
                 int counter0 = 0;
-                foreach (const QVariant &val, list) {
+                Q_FOREACH (const QVariant &val, list) {
                     forLoop.insert("counter", counter0 + 1);
                     forLoop.insert("counter0", counter0);
                     if (!counter0)
@@ -318,7 +318,7 @@ QDjangoHttpResponse* ModelAdmin::addForm(const QDjangoHttpRequest &request)
 
     // collect fields
     QVariantList fieldList;
-    foreach (const QByteArray &key, d->changeFields) {
+    Q_FOREACH (const QByteArray &key, d->changeFields) {
         QVariantMap props;
         props.insert("key", key);
         props.insert("name", QByteArray(key).replace("_", " "));
@@ -327,7 +327,7 @@ QDjangoHttpResponse* ModelAdmin::addForm(const QDjangoHttpRequest &request)
 
     if (request.method() == "POST") {
         QDjangoModel *obj = d->modelFetcher->createObject();
-        foreach (const QByteArray &key, d->changeFields)
+        Q_FOREACH (const QByteArray &key, d->changeFields)
             obj->setProperty(key, request.post(key));
         obj->save();
         delete obj;
@@ -349,7 +349,7 @@ QDjangoHttpResponse* ModelAdmin::changeForm(const QDjangoHttpRequest &request, c
 
     // collect fields
     QVariantList fieldList;
-    foreach (const QByteArray &key, d->changeFields) {
+    Q_FOREACH (const QByteArray &key, d->changeFields) {
         QVariantMap props;
         props.insert("key", key);
         props.insert("name", QByteArray(key).replace("_", " "));
@@ -358,7 +358,7 @@ QDjangoHttpResponse* ModelAdmin::changeForm(const QDjangoHttpRequest &request, c
     }
 
     if (request.method() == "POST") {
-        foreach (const QByteArray &key, d->changeFields)
+        Q_FOREACH (const QByteArray &key, d->changeFields)
             original->setProperty(key, request.post(key));
         original->save();
         return d->redirectHome(request);
@@ -378,7 +378,7 @@ QDjangoHttpResponse* ModelAdmin::changeList(const QDjangoHttpRequest &request)
     QVariantList objectList = d->modelFetcher->listObjects(d->listFields);
 
     QVariantList fieldList;
-    foreach (const QByteArray &key, d->listFields) {
+    Q_FOREACH (const QByteArray &key, d->listFields) {
         QVariantMap props;
         props.insert("key", key);
         props.insert("name", QByteArray(key).replace("_", " "));

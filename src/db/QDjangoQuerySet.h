@@ -70,7 +70,7 @@ public:
      *  \code
      *  QDjangoQuerySet<Weblog::Post> posts;
      *
-     *  foreach(const Weblog::Post &p, posts) {
+     *  Q_FOREACH(const Weblog::Post &p, posts) {
      *      cout << p << endl;
      *  }
      *  \endcode

@@ -45,7 +45,7 @@ static long stringlist_hash(const QStringList &l)
     long x = 0x345678L;
     long mult = 1000003L;
     int len = l.size();
-    foreach (const QString &s, l) {
+    Q_FOREACH (const QString &s, l) {
         --len;
         x = (x ^ string_hash(s)) * mult;
         mult += (long)(82520L + len + len);
@@ -212,7 +212,7 @@ static QMap<QString, QString> parseOptions(const char *value)
 {
     QMap<QString, QString> options;
     QStringList items = QString::fromLatin1(value).split(QLatin1Char(' '));
-    foreach (const QString &item, items) {
+    Q_FOREACH (const QString &item, items) {
         QStringList assign = item.split(QLatin1Char('='));
         if (assign.size() == 2) {
             options[assign[0].toLower()] = assign[1];
@@ -425,7 +425,7 @@ QDjangoMetaModel& QDjangoMetaModel::operator=(const QDjangoMetaModel& other)
 bool QDjangoMetaModel::createTable() const
 {
     QDjangoQuery createQuery(QDjango::database());
-    foreach (const QString &sql, createTableSql()) {
+    Q_FOREACH (const QString &sql, createTableSql()) {
         if (!createQuery.exec(sql))
             return false;
     }
@@ -446,7 +446,7 @@ QStringList QDjangoMetaModel::createTableSql() const
     QStringList propSql;
     QStringList constraintSql;
     const QString quotedTable = db.driver()->escapeIdentifier(d->table, QSqlDriver::TableName);
-    foreach (const QDjangoMetaField &field, d->localFields)
+    Q_FOREACH (const QDjangoMetaField &field, d->localFields)
     {
         QString fieldSql = driver->escapeIdentifier(field.column(), QSqlDriver::FieldName);
         switch (field.d->type) {
@@ -615,7 +615,7 @@ QStringList QDjangoMetaModel::createTableSql() const
     // unique contraints
     if (!d->uniqueTogether.isEmpty()) {
         QStringList columns;
-        foreach (const QByteArray &name, d->uniqueTogether) {
+        Q_FOREACH (const QByteArray &name, d->uniqueTogether) {
             columns << driver->escapeIdentifier(localField(name).column(), QSqlDriver::FieldName);
         }
         propSql << QString::fromLatin1("UNIQUE (%2)").arg(columns.join(QLatin1String(", ")));
@@ -627,7 +627,7 @@ QStringList QDjangoMetaModel::createTableSql() const
             propSql.join(QLatin1String(", ")));
 
     // create indices
-    foreach (const QDjangoMetaField &field, d->localFields) {
+    Q_FOREACH (const QDjangoMetaField &field, d->localFields) {
         if (field.d->index) {
             const QString indexName = d->table + QLatin1Char('_')
                 + stringlist_digest(QStringList() << field.column());
@@ -728,13 +728,13 @@ void QDjangoMetaModel::setForeignKey(QObject *model, const char *name, QObject *
 void QDjangoMetaModel::load(QObject *model, const QVariantList &properties, int &pos) const
 {
     // process local fields
-    foreach (const QDjangoMetaField &field, d->localFields)
+    Q_FOREACH (const QDjangoMetaField &field, d->localFields)
         model->setProperty(field.d->name, properties.at(pos++));
 
     // process foreign fields
     if (pos >= properties.size())
         return;
-    foreach (const QByteArray &fkName, d->foreignFields.keys())
+    Q_FOREACH (const QByteArray &fkName, d->foreignFields.keys())
     {
         QObject *object = model->property(fkName + "_ptr").value<QObject*>();
         if (object)
@@ -759,7 +759,7 @@ QMap<QByteArray, QByteArray> QDjangoMetaModel::foreignFields() const
 QDjangoMetaField QDjangoMetaModel::localField(const char *name) const
 {
     const QByteArray fieldName = strcmp(name, "pk") ? QByteArray(name) : d->primaryKey;
-    foreach (const QDjangoMetaField &field, d->localFields) {
+    Q_FOREACH (const QDjangoMetaField &field, d->localFields) {
         if (field.d->name == fieldName)
             return field;
     }
@@ -823,7 +823,7 @@ bool QDjangoMetaModel::save(QObject *model) const
         {
             // prepare data
             QVariantMap fields;
-            foreach (const QDjangoMetaField &field, d->localFields) {
+            Q_FOREACH (const QDjangoMetaField &field, d->localFields) {
                 if (field.d->name != d->primaryKey) {
                     const QVariant value = model->property(field.d->name);
                     fields.insert(QString::fromLatin1(field.d->name), field.toDatabase(value));
@@ -839,7 +839,7 @@ bool QDjangoMetaModel::save(QObject *model) const
 
     // prepare data
     QVariantMap fields;
-    foreach (const QDjangoMetaField &field, d->localFields) {
+    Q_FOREACH (const QDjangoMetaField &field, d->localFields) {
         if (!field.d->autoIncrement) {
             const QVariant value = model->property(field.d->name);
             fields.insert(field.name(), field.toDatabase(value));

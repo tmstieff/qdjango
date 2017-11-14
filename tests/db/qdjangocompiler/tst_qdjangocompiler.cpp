@@ -26,7 +26,7 @@
 static QStringList normalizeNames(const QSqlDatabase &db, const QStringList &rawNames)
 {
     QStringList normalizedNames;
-    foreach (const QString &rawName, rawNames) {
+    Q_FOREACH (const QString &rawName, rawNames) {
         normalizedNames << normalizeSql(db, rawName);
     }
     return normalizedNames;

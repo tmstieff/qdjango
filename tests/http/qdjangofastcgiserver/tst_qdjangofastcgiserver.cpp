@@ -141,7 +141,7 @@ QDjangoFastCgiReply* QDjangoFastCgiClient::request(const QString &method, const 
     params["aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"] = "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb";
 
     ba.clear();
-    foreach (const QByteArray &key, params.keys()) {
+    Q_FOREACH (const QByteArray &key, params.keys()) {
         const QByteArray value = params.value(key);
         ba.append(encodeSize(key.size()));
         ba.append(encodeSize(value.size()));

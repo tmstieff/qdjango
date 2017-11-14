@@ -158,7 +158,7 @@ void tst_QDjangoUrlResolver::testReverse()
 
     QVariantList varArgs;
     if (!args.isEmpty()) {
-        foreach (const QString &bit, args.split(QLatin1Char('|')))
+        Q_FOREACH (const QString &bit, args.split(QLatin1Char('|')))
             varArgs << bit;
     }
     if (!warning.isEmpty())

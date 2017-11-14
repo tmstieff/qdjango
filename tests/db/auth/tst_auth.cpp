@@ -487,7 +487,7 @@ void tst_Auth::update()
     QCOMPARE(qs.update(fields), 3);
 
     QDjangoQuerySet<User> all;
-    foreach (const User &user, all)
+    Q_FOREACH (const User &user, all)
         QCOMPARE(user.password(), QLatin1String("xxx"));
 
     // update one
@@ -496,7 +496,7 @@ void tst_Auth::update()
     QCOMPARE(qs.update(fields), 1);
 
     all = QDjangoQuerySet<User>();
-    foreach (const User &user, all) {
+    Q_FOREACH (const User &user, all) {
         if (user.username() == "baruser")
             QCOMPARE(user.password(), QLatin1String("yyy"));
         else
